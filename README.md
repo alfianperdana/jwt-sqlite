@@ -1,98 +1,120 @@
-# FastAPI SQLite with JWT, RBAC, Rate Limiting, and Audit Logging
+# 🛡️ FastAPI SQLite with JWT, RBAC, Rate Limiting, and Audit Logging
 
-A complete FastAPI training project showcasing a robust backend structure. This project includes Authentication (JWT), Role-Based Access Control (RBAC), API Rate Limiting, Audit Logging, and custom Error Handling using SQLite as the database.
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
-## 🚀 Features
+Sebuah proyek pelatihan API backend yang komprehensif menggunakan FastAPI. Proyek ini mendemonstrasikan struktur backend yang solid dan modern, mengimplementasikan Autentikasi (JWT), Kontrol Akses Berbasis Peran (RBAC), Pembatasan Laju (Rate Limiting), Pencatatan Audit (Audit Logging), serta Penanganan Error Khusus (Custom Error Handling) menggunakan basis data SQLite.
 
-* **FastAPI Framework**: High performance, easy to learn, fast to code, ready for production.
-* **SQLite Database**: Lightweight disk-based database via `SQLAlchemy` ORM.
-* **Authentication & Authorization**:
-  * JWT (JSON Web Tokens) for secure authentication.
-  * Role-Based Access Control (RBAC) to manage user permissions.
-* **Security & Reliability**:
-  * **Rate Limiting**: Protects endpoints from DDoS or brute-force attacks using `slowapi`.
-  * **Audit Logging**: Tracks and logs requests for monitoring and debugging via custom middleware.
-  * **Custom Error Handling**: Standardized JSON responses for application and validation errors.
-* **Modular Structure**: Organized codebase (routers, models, schemas, middleware, core/deps).
+---
+
+## 🌟 Fitur Utama
+
+- **🚀 FastAPI Framework**: Kinerja tinggi, sangat cepat, mudah dipelajari, dan siap untuk diproduksi.
+- **🗄️ SQLite Database**: Database yang ringan dan berbasis disk dengan ORM `SQLAlchemy`.
+- **🔐 Autentikasi & Otorisasi**:
+  - Implementasi aman menggunakan JWT (JSON Web Tokens).
+  - Role-Based Access Control (RBAC) untuk mengelola izin setiap role pengguna dengan mudah.
+- **🛡️ Keamanan & Reliabilitas**:
+  - **Rate Limiting**: Melindungi berbagai endpoint dari serangan DDoS maupun *brute-force* menggunakan `slowapi`.
+  - **Audit Logging**: Mencatat (log) semua permintaan HTTP (request) untuk memudahkan pengawasan dan perbaikan secara terpusat.
+  - **Custom Error Handling**: Response error diseragamkan dengan format JSON untuk error aplikasi dan kegagalan validasi.
+- **🧩 Struktur Modular**: Kode terorganisasi dengan baik (`routers`, `models`, `schemas`, `middleware`, `deps`).
+
+---
 
 ## 🛠️ Tech Stack
 
-* **Python 3.x**
-* **FastAPI**
-* **SQLAlchemy** (ORM)
-* **SQLite** (Database)
-* **PyJWT** (Authentication)
-* **Passlib** (Password Hashing)
-* **SlowAPI** (Rate Limiting)
-* **Uvicorn** (ASGI Server)
+| Teknologi | Deskripsi |
+| :--- | :--- |
+| **Python 3.x** | Bahasa Pemrograman Utama |
+| **FastAPI** | Web Framework |
+| **SQLAlchemy** | Object Relational Mapper (ORM) |
+| **SQLite** | Basis Data (Sistem Relasional) |
+| **PyJWT** | Library Autentikasi JWT |
+| **Passlib / Bcrypt** | Hashing Keamanan Kata Sandi |
+| **SlowAPI** | Extensi Rate Limiting FastAPI |
+| **Uvicorn** | ASGI Server untuk Menjalankan Aplikasi |
 
-## 📦 Installation & Setup
+---
 
-Follow these steps to set up and run the project locally.
+## 📦 Panduan Instalasi & Menjalankan Aplikasi
 
-### 1. Clone the repository
-\`\`\`bash
+Ikuti langkah-langkah di bawah ini untuk mengatur dan menjalankan aplikasi di komputer/server lokal Anda.
+
+### 1. Clone Repositori
+```bash
 git clone <repository-url>
 cd jwt-sqlite
-\`\`\`
+```
 
-### 2. Create and Activate Virtual Environment
-It is recommended to use a virtual environment to manage dependencies.
-\`\`\`bash
-# Create virtual environment
+### 2. Buat & Aktifkan Virtual Environment
+Sangat disarankan memakai Virtual Environment (`.venv`) agar dependensi tidak bertabrakan dengan sistem yang lain.
+
+```bash
+# Membuat virtual environment
 python -m venv .venv
 
-# Activate virtual environment
-# On macOS/Linux:
+# Mengaktifkan (Mac/Linux)
 source .venv/bin/activate
-# On Windows:
-.venv\\Scripts\\activate
-\`\`\`
 
-### 3. Install Dependencies
-Ensure you have all the required Python packages installed.
-*(Note: If a `requirements.txt` is not provided, you may need to install standard FastAPI dependencies manually)*
-\`\`\`bash
+# Mengaktifkan (Windows)
+.venv\Scripts\activate
+```
+
+### 3. Instalasi Dependensi
+Pastikan Anda sudah menginstal seluruh *package* Python yang dibutuhkan:
+```bash
 pip install fastapi uvicorn sqlalchemy passlib bcrypt pyjwt slowapi
-\`\`\`
+```
 
-### 4. Run the Application
-Start the FastAPI server using Uvicorn.
-\`\`\`bash
+### 4. Mulai Aplikasi
+Jalankan server aplikasi FastAPI menggunakan Uvicorn:
+```bash
 uvicorn app.main:app --reload --port 8000
-\`\`\`
+```
 
-The API will be accessible at:
-* **Base URL**: \`http://localhost:8000\`
-* **Interactive API Docs (Swagger UI)**: \`http://localhost:8000/docs\`
-* **Alternative API Docs (ReDoc)**: \`http://localhost:8000/redoc\`
+> **Catatan**: Aplikasi akan berjalan di `http://localhost:8000`.
 
-## 📂 Project Structure
+---
 
-\`\`\`text
+## 📖 Dokumentasi API
+
+FastAPI secara otomatis men-*generate* halaman dokumentasi interaktif. Setelah server menyala, Anda bisa mengakses URL berikut:
+- **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs) *(Paling direkomendasikan untuk testing)*
+- **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+### Ringkasan Endpoint Utama:
+- `POST /auth/login` : Autentikasi & Pembuatan Token JWT.
+- `GET /v1/users/me` : Mendapatkan profil *user* yang sedang aktif.
+- `GET /v1/users/` : Manajemen pengguna (dilindungi berdasarkan peran RBAC).
+- `GET /audit/` : Melihat daftar rekam jejak aktivitas (Audit Logs).
+
+---
+
+## 📂 Struktur Folder Proyek
+
+Untuk mempermudah pemahaman alur kerja basis kode:
+
+```text
 jwt-sqlite/
 ├── app/
-│   ├── database.py       # Database connection & SQLAlchemy Base
-│   ├── deps/             # Dependency injection (e.g., get_db, auth_user)
-│   ├── errors.py         # Custom application exceptions
-│   ├── main.py           # FastAPI application instance & config
+│   ├── database.py       # Konfigurasi Koneksi & Base SQLAlchemy
+│   ├── deps/             # Dependency injection (e.g. get_db, current_user)
+│   ├── errors.py         # Exception handling / Error khusus terpusat
+│   ├── main.py           # Inisialisasi utama aplikasi FastAPI
 │   ├── middleware/       # Custom middleware (Rate Limiting, Audit Log)
-│   ├── models/           # SQLAlchemy database models (User, AuditLog, etc.)
-│   ├── routers/          # API endpoints (Auth, User, Audit, dll)
-│   ├── schemas/          # Pydantic models for request/response validation
-│   └── security/         # Authentication logic (Hashing, JWT creation/verification)
-├── api_security.db       # SQLite Database File
-└── README.md             # Project documentation (this file)
-\`\`\`
+│   ├── models/           # Definisi skema tabel pada ORM (User, AuditLog)
+│   ├── routers/          # Endpoint API berdasarkan fungsionalitas
+│   ├── schemas/          # Validasi tipe data (Request & Response) dengan Pydantic
+│   └── security/         # Fungsi helper (hashing password, token JWT)
+├── api_security.db       # File database SQLite (ter-generate saat aplikasi diakses)
+└── README.md             # Dokumentasi utama proyek
+```
 
-## 📝 API Endpoints Summary
+---
 
-Once the application is running, check \`http://localhost:8000/docs\` for full details. The main routers included are:
-* **/auth**: Login, token generation.
-* **/v1/users**: User management, registration, profile retrieval (protected via RBAC).
-* **/audit**: Accessing recorded audit logs.
-
-## 🛡️ Best Practices Implemented
-* **Separation of Concerns**: Clear boundary between routes, database models, and busines logic.
-* **Middleware Integration**: Intercepting requests for rate limiting and logging before they hit the endpoints.
-* **Centralized Exception Handling**: Catching and formatting errors uniformly across the application.
+## 🛡️ Praktik Terbaik (Best Practices) yang Digunakan
+1. **Pemisahan Konteks (Separation of Concerns)**: Batas yang jelas antara definisi skema, struktur model *database*, lalu lintas rute, dan injeksi *dependency*.
+2. **Middleware Terintegrasi**: Mengintersepsi setiap siklus aliran data, seperti *rate-limiter* dan *audit-logger*, tanpa mengotori setiap *endpoints*.
+3. **Standarisasi Respon & Error**: Tidak ada *Internal Server Error* bawaan karena sudah ditangkap oleh `AppError` secara global.
